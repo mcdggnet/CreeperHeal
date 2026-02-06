@@ -4,7 +4,6 @@ import com.nitnelave.CreeperHeal.block.BurntBlockManager;
 import com.nitnelave.CreeperHeal.config.CreeperConfig;
 import com.nitnelave.CreeperHeal.config.WCfgVal;
 import com.nitnelave.CreeperHeal.config.WorldConfig;
-import com.nitnelave.CreeperHeal.utils.FactionHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -31,8 +30,7 @@ public class CreeperBlockListener implements Listener
     {
         WorldConfig world = CreeperConfig.getWorld(event.getBlock().getLocation().getWorld());
 
-        if (world.getBool(WCfgVal.FIRE) && !world.isProtected(event.getBlock())
-            && !FactionHandler.shouldIgnore(event.getBlock(), world))
+        if (world.getBool(WCfgVal.FIRE) && !world.isProtected(event.getBlock()))
         {
             if (BurntBlockManager.wasRecentlyBurnt(event.getBlock()))
             {

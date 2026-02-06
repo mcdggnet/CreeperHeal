@@ -1,7 +1,6 @@
 package com.nitnelave.CreeperHeal.block;
 
 import com.nitnelave.CreeperHeal.CreeperHeal;
-import com.nitnelave.CreeperHeal.PluginHandler;
 import com.nitnelave.CreeperHeal.config.CfgVal;
 import com.nitnelave.CreeperHeal.config.CreeperConfig;
 import com.nitnelave.CreeperHeal.config.WorldConfig;
@@ -181,8 +180,6 @@ public class ExplodedBlockManager
     public static void processExplosion(List<Block> originalBlockList, Location location,
                                         CHExplosionRecordEvent.ExplosionReason reason)
     {
-        if (PluginHandler.isInArena(location))
-            return;
 
         //process list is the list of blocks yet to be processed by creeperheal.
         CHExplosionRecordEvent event = new CHExplosionRecordEvent(originalBlockList, location, reason);

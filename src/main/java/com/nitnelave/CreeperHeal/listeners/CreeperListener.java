@@ -11,7 +11,6 @@ import com.nitnelave.CreeperHeal.config.WCfgVal;
 import com.nitnelave.CreeperHeal.config.WorldConfig;
 import com.nitnelave.CreeperHeal.utils.CreeperLog;
 import com.nitnelave.CreeperHeal.utils.CreeperUtils;
-import com.nitnelave.CreeperHeal.utils.FactionHandler;
 import com.nitnelave.CreeperHeal.utils.Suffocating;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -51,14 +50,12 @@ public class CreeperListener implements Listener
         CreeperLog.debug("Entity explode event");
         WorldConfig world = CreeperConfig.getWorld(event.getLocation().getWorld());
 
-        if (!FactionHandler.shouldIgnore(event.blockList(), world))
-        {
-            Entity entity = event.getEntity();
-            if (entity == null && !world.isAbove(event.getLocation()))
-                return;
-            if (world.shouldReplace(entity))
-                ExplodedBlockManager.processExplosion(event, CreeperUtils.getReason(entity));
-        }
+        Entity entity = event.getEntity();
+        if (entity == null && !world.isAbove(event.getLocation()))
+            return;
+        if (world.shouldReplace(entity))
+            ExplodedBlockManager.processExplosion(event, CreeperUtils.getReason(entity));
+
     }
 
     /**
@@ -74,16 +71,15 @@ public class CreeperListener implements Listener
         CreeperLog.debug("Block explode event: " + event.blockList().size());
         WorldConfig world = CreeperConfig.getWorld(event.getBlock().getWorld());
 
-        if (!FactionHandler.shouldIgnore(event.blockList(), world))
+
+        if (!world.isAbove(event.getBlock().getLocation()))
+            return;
+        if (world.getBool(WCfgVal.CUSTOM))
         {
-            if (!world.isAbove(event.getBlock().getLocation()))
-                return;
-            if (world.getBool(WCfgVal.CUSTOM))
-            {
-                ExplodedBlockManager.processExplosion(event);
-                event.blockList().clear();
-            }
+            ExplodedBlockManager.processExplosion(event);
+            event.blockList().clear();
         }
+
     }
 
     /**

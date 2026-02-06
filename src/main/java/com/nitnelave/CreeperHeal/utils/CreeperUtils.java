@@ -36,8 +36,8 @@ public abstract class CreeperUtils
             return CHExplosionRecordEvent.ExplosionReason.DRAGON;
         case FIREBALL:
             return CHExplosionRecordEvent.ExplosionReason.GHAST;
-        case PRIMED_TNT:
-        case MINECART_TNT:
+        case TNT:
+        case TNT_MINECART:
             return CHExplosionRecordEvent.ExplosionReason.TNT;
         default:
             return CHExplosionRecordEvent.ExplosionReason.OTHER;

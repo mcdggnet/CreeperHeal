@@ -285,7 +285,7 @@ public class CreeperBlock implements Replaceable
           case PISTON_HEAD:
           case STICKY_PISTON:
               return new CreeperPiston(state);
-          case GRASS:
+          case GRASS_BLOCK:
               return new CreeperGrass(state);
 
               /*

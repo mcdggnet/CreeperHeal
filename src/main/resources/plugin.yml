@@ -2,10 +2,9 @@ name: CreeperHeal
 main: com.nitnelave.CreeperHeal.CreeperHeal
 version: ${project.version}
 author: nitnelave
-authors: [Jikoo]
+authors: [Jikoo, Rooyal]
 description: Replaces terrain destroyed by creeper explosions
-softdepend: [LWC, MobArena, Factions]
-api-version: 1.19
+api-version: 1.21
 
 commands:
     CreeperHeal:
